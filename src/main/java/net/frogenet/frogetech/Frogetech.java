@@ -2,13 +2,22 @@ package net.frogenet.frogetech;
 
 import com.mojang.logging.LogUtils;
 import net.frogenet.frogetech.block.ModBlocks;
+import net.frogenet.frogetech.block.entity.ModBlockEntities;
+import net.frogenet.frogetech.item.ModCreativeModeTabs;
 import net.frogenet.frogetech.item.ModItems;
+import net.frogenet.frogetech.screen.ModMenuTypes;
+import net.frogenet.frogetech.screen.custom.PedestalScreen;
 import net.minecraft.world.item.CreativeModeTabs;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.frogenet.frogetech.block.entity.renderer.PedestalBlockEntityRenderer;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
@@ -24,6 +33,8 @@ public class Frogetech {
         modEventBus.addListener(this::commonSetup);
 
         NeoForge.EVENT_BUS.register(this);
+
+        ModCreativeModeTabs.register(modEventBus);
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
@@ -48,5 +59,18 @@ public class Frogetech {
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
 
+    }
+
+    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    public static class ClientModEvents {
+        @SubscribeEvent
+        public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
+            event.registerBlockEntityRenderer(ModBlockEntities.PEDESTAL_BE.get(), PedestalBlockEntityRenderer::new);
+        }
+
+        @SubscribeEvent
+        public static void registerScreens(RegisterMenuScreensEvent event){
+            event.register(ModMenuTypes.PEDESTAL_MENU.get(), PedestalScreen::new);
+        }
     }
 }

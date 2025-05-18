@@ -17,6 +17,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
     @Override
     protected void generate(){
         dropSelf(ModBlocks.SOLID_GUNK.get());
+        dropSelf(ModBlocks.PEDESTAL.get());
     }
 
 

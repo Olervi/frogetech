@@ -2,8 +2,9 @@ package net.frogenet.frogetech.block;
 
 import net.frogenet.frogetech.Frogetech;
 import net.frogenet.frogetech.item.ModItems;
+import net.frogenet.frogetech.block.custom.*;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.bus.api.IEventBus;
@@ -23,7 +24,8 @@ public class ModBlocks {
 
 
 
-
+    public static final DeferredBlock<Block> PEDESTAL = registerBlock("pedestal",
+            (properties -> new PedestalBlock(properties.noOcclusion())));
 
 
 
