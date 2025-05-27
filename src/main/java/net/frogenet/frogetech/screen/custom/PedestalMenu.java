@@ -29,6 +29,8 @@ public class PedestalMenu extends AbstractContainerMenu {
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
 
+
+        //Adds the Pedestal Slot at x:80 y:35
         this.addSlot(new SlotItemHandler(this.blockEntity.inventory, 0, 80, 35));
     }
 

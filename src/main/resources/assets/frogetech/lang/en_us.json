@@ -1,5 +1,7 @@
 {
-  "itemGroup.frogetech": "Example Mod Tab",
-  "block.frogetech.example_block": "Example Block",
-  "item.frogetech.example_item": "Example Item"
+  "creativetab.frogetech.frogetech_items": "FrogeTech Items",
+  "creativetab.frogetech.frogetech_blocks": "FrogeTech Blocks",
+  "block.frogetech.solid_gunk": "Solid Gunk",
+  "item.frogetech.gunk_ball": "Gunk Ball",
+  "block.frogetech.toad_toaster": "Toad Toaster"
 }
